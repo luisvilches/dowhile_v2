@@ -1,7 +1,7 @@
-const Servicios = require("../models/servicios");
+const Rrss = require("../models/rrss");
 
 exports.find = (req,res) => {
-	Servicios.find({},(err,result) => {
+	Rrss.find({},(err,result) => {
 		if (err) {
 			res.status(500).json({message:err});
 		} else {
@@ -14,10 +14,10 @@ exports.find = (req,res) => {
 }
 
 exports.create = (req,res) => {
-	let servicio = new Servicios({
+	let servicio = new Rrss({
 		icon: req.body.icon,
-		titulo: req.body.titulo,
-		body: req.body.body
+		name: req.body.name,
+		link: req.body.link
 	});
 
 	servicio.save((err,result) => {
@@ -35,14 +35,14 @@ exports.create = (req,res) => {
 }
 
 exports.update = (req,res) => {
-	let servicio = new Servicios({
+	let servicio = new Rrss({
 		_id: req.params.id,
 		icon: req.body.icon,
-		titulo: req.body.titulo,
-		body: req.body.body
+		name: req.body.name,
+		link: req.body.link
 	});
 
-	Servicios.findByIdAndUpdate({_id:req.params.id},servicio,(err,result) => {
+	Rrss.findByIdAndUpdate({_id:req.params.id},servicio,(err,result) => {
 		if (err) {
 			res.status(500).json({
 				message: err
@@ -57,7 +57,7 @@ exports.update = (req,res) => {
 }
 
 exports.delete = (req,res) => {
-	Servicios.remove({_id:req.params.id}, (err,result) => {
+	Rrss.remove({_id:req.params.id}, (err,result) => {
 		if (err) {
 			res.status(500).json({
 				message: err

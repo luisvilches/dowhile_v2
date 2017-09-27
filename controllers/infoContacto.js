@@ -1,7 +1,7 @@
-const Servicios = require("../models/servicios");
+const Info = require("../models/infoContacto");
 
 exports.find = (req,res) => {
-	Servicios.find({},(err,result) => {
+	Info.find({},(err,result) => {
 		if (err) {
 			res.status(500).json({message:err});
 		} else {
@@ -14,9 +14,8 @@ exports.find = (req,res) => {
 }
 
 exports.create = (req,res) => {
-	let servicio = new Servicios({
+	let servicio = new Info({
 		icon: req.body.icon,
-		titulo: req.body.titulo,
 		body: req.body.body
 	});
 
@@ -35,14 +34,13 @@ exports.create = (req,res) => {
 }
 
 exports.update = (req,res) => {
-	let servicio = new Servicios({
+	let servicio = new Servicio({
 		_id: req.params.id,
 		icon: req.body.icon,
-		titulo: req.body.titulo,
 		body: req.body.body
 	});
 
-	Servicios.findByIdAndUpdate({_id:req.params.id},servicio,(err,result) => {
+	Info.findByIdAndUpdate({_id:req.params.id},servicio,(err,result) => {
 		if (err) {
 			res.status(500).json({
 				message: err
@@ -57,7 +55,7 @@ exports.update = (req,res) => {
 }
 
 exports.delete = (req,res) => {
-	Servicios.remove({_id:req.params.id}, (err,result) => {
+	Info.remove({_id:req.params.id}, (err,result) => {
 		if (err) {
 			res.status(500).json({
 				message: err

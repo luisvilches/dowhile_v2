@@ -10,5 +10,6 @@ router.get("/", body, controller.main.main);
 // ruta login
 router.post("/login", body,auth.auth);
 router.post("/signup",body,controller.user.create);
+router.post("/formContacto",body,controller.formContacto.enviaMail);
 
 module.exports = router;
